@@ -1,0 +1,8 @@
+<Database>
+  <Device>
+    <ChipInfo Vendor="FK" Name="FKH7B0_WQ25XX" WorkRAMAddr="0x24000000" WorkRAMSize="0x40000" Core="JLINK_CORE_CORTEX_M7" />
+    <FlashBankInfo Name="SPI Flash" BaseAddr="0x90000000" AlwaysPresent="1" >
+      <LoaderInfo Name="Default" MaxSize="0x800000" Loader="SFL.elf" LoaderType="FLASH_ALGO_TYPE_OPEN" />
+    </FlashBankInfo>
+  </Device>
+</Database>

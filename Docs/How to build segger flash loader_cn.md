@@ -144,6 +144,32 @@ int __attribute__ ((section ("PrgCode"))) SEGGER_FL_Prepare(uint32_t PreparePara
 
 
 
+# How to use
+
+固件编写完成之后，需要添加对应的设备才能使用这个 elf 对你的外部 Flash 进行编程。具体的实现流程看[这个链接](https://kb.segger.com/J-Link_Device_Support_Kit)。
+
+简单说，就是在 J-Link 的 central folder 添加一个设备，设备由一个 XML 文件描述，里面会包含芯片信息以及前面所编译出来的 elf 文件路径。有了这个文件之后，J-Link 就可以识别到你添加的设备了。
+
+The location of the central folder depends on the host OS, as well as on the active user on that OS:
+
+| OS      | Location                                              |
+| ------- | ----------------------------------------------------- |
+| Windows | C:\Users\<USER>\AppData\Roaming\SEGGER\JLinkDevices   |
+| Linux   | $HOME/.config/SEGGER/JLinkDevices                     |
+| macOS   | $HOME/Library/Application Support/SEGGER/JLinkDevices |
+
+
+
+**这里是 [参考模板](../Code/SFL/JLinkDevices/FK_ST/FKH7B0)。**
+
+
+
+
+
+
+
+
+
 
 
 
