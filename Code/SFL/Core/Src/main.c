@@ -51,7 +51,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MPU_Config(void);
+// static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -67,8 +67,10 @@ static void MPU_Config(void);
   */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
+  while (1) {
+    ;
+  }
   uint32_t start_tick = 0;
   /* USER CODE END 1 */
 

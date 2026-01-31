@@ -40,9 +40,11 @@ struct FlashDevice const FlashDevice __attribute__ ((section ("DevDscr"))) =
 
 int __attribute__ ((section ("PrgCode"))) SEGGER_FL_Prepare(uint32_t PreparePara0, uint32_t PreparePara1, uint32_t PreparePara2)
 {   
-#if 0
+#if 1
     /* System init */
+    SystemInit();
     MPU_Config();
+    
 
     /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
     HAL_Init();
