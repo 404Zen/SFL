@@ -32,7 +32,11 @@
 
 #define W25Qxx_PAGE_SIZE                            256                 // 256 bytes per page
 
-
+#define SECTOR_SIZE                                 0x1000
+#define HALF_BLOCK_SIZE                             0x8000
+#define BLOCK_SIZE                                  0x10000
+#define SECTOR_NUM_OF_HALF_BLOCK                    (HALF_BLOCK_SIZE / SECTOR_SIZE)
+#define SECTOR_NUM_OF_BLOCK                         (BLOCK_SIZE / SECTOR_SIZE)
 
 #define W25QXX_STATUS_REG1_BUSY_POS                 0
 #define W25QXX_STATUS_REG1_BUSY_MASK                (0x01 << W25QXX_STATUS_REG1_BUSY_POS)

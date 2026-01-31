@@ -68,7 +68,7 @@ The following table gives an overview about the mandatory and optional entry fun
 
 
 
-对于 SEGGER 的相关接口，可以查看代码中的具体实现。
+对于 SEGGER 的相关接口，可以查看代码中的具体实现， 后面或许会有讲解。
 
 
 
@@ -103,24 +103,44 @@ section DevDscr                     // Marks the location of the <FlashDevice> s
 
 - 这里的段名称，前面都没有带 .
 - FlashDevice 结构体变量的名称 必须是 FlashDevice
+- **PrgCode 必须必须必须 是 第一个 section**, 如果你遇到各种奇怪的问题，请先检查这一条
 
 
 
-#### 修改 VTOR 指向 SRAM
 
-这部分在 `SystemInit()` 中有想当完善的实现，我们只需要在 `CMakeLists.txt` 中添加对应的全局宏定义即可。
 
-```cmake
-+# STM32CubeMX generated symbols (macros)
-+set(MX_Defines_Syms
-+       USE_PWR_LDO_SUPPLY
-+       USE_HAL_DRIVER
-+       STM32H7B0xx
-+    USER_VECT_TAB_ADDRESS
-+    VECT_TAB_SRAM
-+    $<$<CONFIG:Debug>:DEBUG>
-+)
+## 功能实现
+
+#### SEGGER_FL_Prepare()
+
+在 `SEGGER_FL_Prepare()` 中，我们要实现 MCU 时钟初始化，SPI 接口的初始化这些必须的工作。
+
+所以，这个函数看起来至少是这样的
+
+```C
+int __attribute__ ((section ("PrgCode"))) SEGGER_FL_Prepare(uint32_t PreparePara0, uint32_t PreparePara1, uint32_t PreparePara2)
+{   
+    /* System init */
+    SystemInit();
+    
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    HAL_Init();
+
+
+    /* Configure the system clock */
+    SystemClock_Config();
+
+    /* Initialize all configured peripherals */
+    MX_GPIO_Init();
+    MX_OCTOSPI1_Init();
+
+    return  0;
+}
 ```
+
+
+
+
 
 
 

@@ -12,7 +12,7 @@
 
 /* REF: https://kb.segger.com/SEGGER_Flash_Loader?utm_source=chatgpt.com#FlashDevice_struct */
 
-const uint32_t SEGGER_FL_MaxBlocksizeErase __attribute__((used)) = (0x00010000); // Overrides maximum block size to 64 KB
+
 #define MAX_NUM_SECTORS             (512)           // Max. number of sectors, must not be modified.
 #define SEGGER_SFL_ALGO_VERSION      0x0101         /* Set to 0x0101. Do not set to anything else! */
 

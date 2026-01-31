@@ -6,8 +6,6 @@ set(MX_Defines_Syms
 	USE_PWR_LDO_SUPPLY 
 	USE_HAL_DRIVER 
 	STM32H7B0xx
-    USER_VECT_TAB_ADDRESS
-    VECT_TAB_SRAM
     $<$<CONFIG:Debug>:DEBUG>
 )
 

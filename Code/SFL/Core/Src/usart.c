@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
+#include <stdint.h>
 
 /* USER CODE BEGIN 0 */
 
@@ -146,5 +147,22 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+char strbuf[256];
+void usart1_printf(const char *__format, ...)
+{
+  uint16_t i = 0;
+  va_list list;
 
+  for (i = 0; i < 256; i++) 
+  {
+    strbuf[i] = 0;
+  }
+  va_start(list, __format);
+  vsprintf(strbuf, __format, list);
+
+  HAL_UART_Transmit(&huart1, (uint8_t *)strbuf, strlen(strbuf), HAL_MAX_DELAY);
+
+  va_end(list);
+  
+}
 /* USER CODE END 1 */

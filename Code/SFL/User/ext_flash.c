@@ -9,6 +9,8 @@
 #include "WB_Command.h"
 #include "stm32h7xx_hal_ospi.h"
 
+#include "segger_sfl.h"
+
 
 static int8_t OSPI_W25Qxx_AutoPolling_MemReday(void);
 
@@ -104,6 +106,7 @@ int8_t OSPI_Get_FlashID(void)
 
     id = (data_buf[0] << 16) | (data_buf[1] << 8) | data_buf[2];
 
+    SFL_DEBUG("Flash JEDEC ID: 0x%06X\r\n", id);
     if(id == W25Qxx_FLASH_ID)
     {
         return EXT_FLASH_RET_OK;
@@ -395,6 +398,9 @@ int8_t  OSPI_W25Qxx_WriteBuffer(uint32_t dest_addr, uint32_t num_bytes, uint8_t 
     uint32_t current_addr = 0;
     uint8_t *p_write_data = 0;
 
+    SFL_DEBUG("Call %s\r\n", __FUNCTION__);
+    SFL_DEBUG("dest_addr: 0x%08X, num_bytes: %d\r\n", dest_addr, num_bytes);
+
     // calculate current size need to write
     current_size = W25Qxx_PAGE_SIZE - (dest_addr % W25Qxx_PAGE_SIZE);
     if(current_size > num_bytes)
@@ -427,6 +433,9 @@ int8_t  OSPI_W25Qxx_WriteBuffer(uint32_t dest_addr, uint32_t num_bytes, uint8_t 
 
 int8_t  OSPI_W25Qxx_ReadBuffer(uint32_t src_addr, uint32_t num_bytes, uint8_t *p_data)
 {
+    // SFL_DEBUG("Call %s\r\n", __FUNCTION__);
+    // SFL_DEBUG("src_addr: 0x%08X, num_bytes: %d\r\n", src_addr, num_bytes);
+    
     OSPI_RegularCmdTypeDef  cmd;
 
    cmd.OperationType           = HAL_OSPI_OPTYPE_COMMON_CFG;         
