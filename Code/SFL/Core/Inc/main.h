@@ -62,7 +62,7 @@ void SystemClock_Config(void);
 #define LED0_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
-
+#define SFL_PROJECT                     1
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

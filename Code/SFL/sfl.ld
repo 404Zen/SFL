@@ -20,13 +20,7 @@ _Min_Stack_Size = 0x400;                                /* required amount of st
 /* Define output sections */
 SECTIONS
 {
-    /* The startup code goes first into FLASH */
-    .isr_vector :
-    {
-        . = ALIGN(4);
-        KEEP(*(.isr_vector)) /* Startup code */
-        . = ALIGN(4);
-    } >RAM
+    
 
     /* Marks the start of the SFL. Must be the very first section */
     PrgCode :
@@ -37,7 +31,13 @@ SECTIONS
         . = ALIGN(4);
     }
 
-
+    /* The startup code goes first into FLASH */
+    .isr_vector :
+    {
+        . = ALIGN(4);
+        KEEP(*(.isr_vector)) /* Startup code */
+        . = ALIGN(4);
+    } >RAM
 
     /* The program code and other data goes into FLASH */
     .text :

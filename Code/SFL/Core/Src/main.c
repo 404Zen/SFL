@@ -19,9 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "octospi.h"
+#include "usart.h"
 #include "gpio.h"
-#include "stm32h7xx_hal.h"
-#include <stdint.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -46,14 +45,14 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+#if (SFL_PROJECT == 0)
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-// static void MPU_Config(void);
+static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
-
+#endif
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -67,6 +66,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   while (1) {
     ;
@@ -96,6 +96,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_OCTOSPI1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   // OSPI_W25Qxx_Test();
   /* USER CODE END 2 */

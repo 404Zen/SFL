@@ -15,6 +15,7 @@
 #include "octospi.h"
 #include "WB_Command.h"
 #include "segger_sfl_def.h"
+#include "usart.h"
 
 struct FlashDevice const FlashDevice __attribute__ ((section ("DevDscr"))) = 
 {
@@ -55,18 +56,24 @@ int __attribute__ ((section ("PrgCode"))) SEGGER_FL_Prepare(uint32_t PreparePara
 
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
+
     MX_OCTOSPI1_Init();
-    
+    MX_USART1_UART_Init();
+
     return  OSPI_Get_FlashID();
 #else
+
+
     return 0;
 #endif
 }
 
 int __attribute__ ((section ("PrgCode"))) SEGGER_FL_Restore(uint32_t RestorePara0, uint32_t RestorePara1, uint32_t RestorePara2)
 {
+    __HAL_UART_DISABLE(&huart1);
+    HAL_UART_DeInit(&huart1);
+
     HAL_OSPI_MspDeInit(&hospi1);
-    MX_OCTOSPI1_Init();
 
     return 0;
 }

@@ -106,7 +106,7 @@ int8_t OSPI_Get_FlashID(void)
 
     if(id == W25Qxx_FLASH_ID)
     {
-        return 0;
+        return EXT_FLASH_RET_OK;
     }
     else 
     {
