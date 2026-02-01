@@ -1,3 +1,10 @@
+/**
+ * @file ext_flash.c
+ * @brief Brief description of the source file
+ * @author 404zen
+ * @date 2026-01-31
+ * @version 1.0
+ */
 
 #include "ext_flash.h"
 #include "main.h"

@@ -158,9 +158,89 @@ The location of the central folder depends on the host OS, as well as on the act
 | Linux   | $HOME/.config/SEGGER/JLinkDevices                     |
 | macOS   | $HOME/Library/Application Support/SEGGER/JLinkDevices |
 
-
-
 **这里是 [参考模板](../Code/SFL/JLinkDevices/FK_ST/FKH7B0)。**
+
+
+
+### 关于 JLink Device XML 的一点更新
+
+之前版本的描述文件中，我们是新建了一个设备，这样会一定的限制，即原本 MCU 内部的 Flash 我们无法编程了，除非说我们在这个下载算法里面再把内部 Flash 的擦除/编写/读取也实现一编，并且声明一个新的 Flash Bank。但是我们并不像重新实现一遍内部 Flash 的相关实现。
+
+在经过一番摸索后我发现，其实只需要定义与原来一样的厂商与型号，并添加新的 FlashBankInfo 就可以了。如下
+
+```xml
+<Database>
+  <Device>
+    <ChipInfo Vendor="ST" Name="STM32H7B0VB" />
+    
+    <FlashBankInfo Name="External SPI Flash" 
+                   BaseAddr="0x90000000" 
+                   MaxSize="0x00800000" 
+                   Loader="STM32H7B0VB_W25Q64JV_nCS@PB6_CLK@PB2_D0@PD11_D1@PD12_D2@PD13_D3@PD14_REL_0.0.1.elf" 
+                   LoaderType="FLASH_ALGO_TYPE_OPEN" />
+  </Device>
+</Database>
+```
+
+不需要指定 WorkRAM 与内核相关的信息。在 `%AppData%\SEGGER\JLinkDevices\` 添加这个 XML 与 elf 之后。再打开 J-Flash，你会发现，多了一个名称为 FlashBankInfo Name="External SPI Flash" 中定义的外部 Flash 的下载算法；~~STM32H7B0 本来就支持了 4 个外部下载算法，但与我的板子都不匹配。~~我简单测试发现是可以正常写入和擦除的，但是不知道这里的 Loader 显示的字符为什么是跟随 Name 的  ┑(￣Д ￣)┍。
+
+![image-20260201153746355](assets/image-20260201153746355.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

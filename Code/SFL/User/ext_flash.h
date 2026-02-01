@@ -1,3 +1,11 @@
+/**
+ * @file ext_flash.h
+ * @brief Brief description of the header file
+ * @author 404zen
+ * @date 2026-01-31
+ * @version 1.0
+ */
+
 #ifndef __EXT_FLASH__
 #define __EXT_FLASH__
 

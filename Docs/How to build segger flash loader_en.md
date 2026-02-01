@@ -78,7 +78,7 @@ section DevDscr                     // Marks the location of the <FlashDevice> s
 
 The first segment of the STM32H7B0's AXI SRAM (256KBytes) was selected for this purpose, as it provides sufficient space. Adapt the linker script according to the requirements.
 
-You can refer to the modified linker script: sfl.ld
+You can refer to the modified linker script:  [sfl.ld](../Code/SFL/sfl.ld) 
 
 Important details to note:
 
@@ -128,4 +128,4 @@ The location of the central folder depends on the host OS and the active user:
 | Linux   | $HOME/.config/SEGGER/JLinkDevices                     |
 | macOS   | $HOME/Library/Application Support/SEGGER/JLinkDevices |
 
-**Refer to the template here.**
+**[Refer to the template here](../Code/SFL/JLinkDevices/FK_ST/FKH7B0).**
